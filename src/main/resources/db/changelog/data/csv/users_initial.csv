@@ -1,0 +1,6 @@
+id;user_name;email;password;active
+baa4324f-9c57-4cf9-b7f1-521a325fb3ad;Pablo;pablo@email.com;password;true
+477c8478-1ed5-4459-bc2c-55f19d24e368;Pei;peibolinas@gmail.com;password;true
+cd2ffa50-8d41-4b5a-b60f-6698cb70a458;Carlos;carlos@hotmail.com;password;false
+9d9dca7d-3152-4d42-a91f-03b3591a455a;El papo;papo@hotmail.com;password;true
+72f7117a-e1ff-4c17-a8e6-e8b058fdf125;Quasimodo;quasimodo@hotmail.com;password;true

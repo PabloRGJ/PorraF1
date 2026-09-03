@@ -1,0 +1,9 @@
+databaseChangeLog:
+
+  - include:
+      file: db/changelog/migrations/db.changelog-migration-master.yml
+      relativeToChangelogFile: false
+
+  - include:
+      file: db/changelog/data/db.changelog-data-master.yml
+      relativeToChangelogFile: false

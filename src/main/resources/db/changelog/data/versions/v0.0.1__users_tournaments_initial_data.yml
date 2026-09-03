@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0.0.1__users_tournament_initial_data
+      author: Pablo
+      changes:
+        - loadData:
+            file: ../csv/users_initial.csv
+            separator: ;
+            tableName: users
+            relativeToChangelogFile: true
+
+        - loadData:
+            file: ../csv/tournaments_initial.csv
+            separator: ;
+            tableName: tournaments
+            relativeToChangelogFile: true
+
+        - loadData:
+            file: ../csv/users_tournaments_initial.csv
+            separator: ;
+            tableName: users_tournaments
+            relativeToChangelogFile: true

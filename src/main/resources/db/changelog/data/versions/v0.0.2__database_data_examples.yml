@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0.0.2__database_data_examples
+      author: Pablo
+      changes:
+        - loadData:
+            file: ../csv/pilots_initial.csv
+            separator: ;
+            tableName: pilots
+            relativeToChangelogFile: true
+
+        - loadData:
+            file: ../csv/events_initial.csv
+            separator: ;
+            tableName: events
+            relativeToChangelogFile: true
+
+        - loadData:
+            file: ../csv/participations_initial.csv
+            separator: ;
+            tableName: participations
+            relativeToChangelogFile: true
+
+        - loadData:
+            file: ../csv/event_scores_initial.csv
+            separator: ;
+            tableName: event_scores
+            relativeToChangelogFile: true
+
+        - loadData:
+            file: ../csv/guesses_initial.csv
+            separator: ;
+            tableName: guesses
+            relativeToChangelogFile: true

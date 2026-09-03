@@ -1,0 +1,9 @@
+databaseChangeLog:
+
+  - include:
+      file: versions/v0.0.1__users_tournaments_initial_data.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: versions/v0.0.2__database_data_examples.yml
+      relativeToChangelogFile: true

@@ -1,0 +1,13 @@
+databaseChangeLog:
+
+  - include:
+      file: versions/v0.1.0__create_users_table.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: versions/v0.1.1__tournaments_and_users_tournaments.yml
+      relativeToChangelogFile: true
+
+  - include:
+      file: versions/v0.2.0__database_table_definition.yml
+      relativeToChangelogFile: true

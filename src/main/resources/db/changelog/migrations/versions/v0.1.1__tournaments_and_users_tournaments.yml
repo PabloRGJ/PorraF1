@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: v0.1.1-tournaments-and-user-tournaments
+      author: Pablo
+      comment: "Creacion de la tabla de torneos y la tabla intermedia relacionando con la de usuarios"
+      changes:
+
+        - createTable:
+            tableName: tournaments
+            columns:
+
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: season
+                  type: int
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: users_tournaments
+            columns:
+
+              - column:
+                  name: tournament_id
+                  type: UUID
+
+              - column:
+                  name: user_id
+                  type: UUID
+
+        - addPrimaryKey:
+            tableName: users_tournaments
+            columnNames: tournament_id, user_id
+            constraintName: pk_users_tournaments
+
+        - addForeignKeyConstraint:
+            constraintName: fk_users_tournaments_user_id_users
+            baseTableName: users_tournaments
+            referencedTableName: users
+            baseColumnNames: user_id
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            constraintName: fk_users_tournaments_tournament_id_tournaments
+            baseTableName: users_tournaments
+            referencedTableName: tournaments
+            baseColumnNames: tournament_id
+            referencedColumnNames: id
+
+      rollback:
+        - dropTable:
+            tableName: tournaments

@@ -1,0 +1,276 @@
+databaseChangeLog:
+  - changeSet:
+      id: v0.1.2-events-pilots-participations-scores-guesses
+      author: dev
+      comment: "Crea las tablas de pilotos, eventos, participaciones, puntuaciones de eventos y pronosticos (guesses), junto con sus relaciones"
+      changes:
+        -
+        # ---------- pilots ----------
+        - createTable:
+            tableName: pilots
+            columns:
+
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: nick
+                  type: VARCHAR(3)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: team
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+
+        # ---------- events ----------
+        - createTable:
+            tableName: events
+            columns:
+
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: name
+                  type: VARCHAR(200)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: round
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: season
+                  type: INT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: type
+                  type: VARCHAR(15)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: start_time
+                  type: TIMESTAMP
+
+              - column:
+                  name: end_time
+                  type: TIMESTAMP
+
+        # ---------- participations ----------
+        - createTable:
+            tableName: participations
+            columns:
+
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: pilot_id
+                  type: UUID
+
+              - column:
+                  name: event_id
+                  type: UUID
+
+              - column:
+                  name: final_position
+                  type: VARCHAR(3)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            constraintName: fk_participations_pilot_id_pilots
+            baseTableName: participations
+            referencedTableName: pilots
+            baseColumnNames: pilot_id
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            constraintName: fk_participations_event_id_events
+            baseTableName: participations
+            referencedTableName: events
+            baseColumnNames: event_id
+            referencedColumnNames: id
+
+        # ---------- event_scores ----------
+        - createTable:
+            tableName: event_scores
+            columns:
+
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: user_id
+                  type: UUID
+
+              - column:
+                  name: tournament_id
+                  type: UUID
+
+              - column:
+                  name: event_id
+                  type: UUID
+
+              - column:
+                  name: score
+                  type: INT
+
+        - addForeignKeyConstraint:
+            constraintName: fk_event_scores_user_id_users
+            baseTableName: event_scores
+            referencedTableName: users
+            baseColumnNames: user_id
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            constraintName: fk_event_scores_tournament_id_tournaments
+            baseTableName: event_scores
+            referencedTableName: tournaments
+            baseColumnNames: tournament_id
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            constraintName: fk_event_scores_event_id_events
+            baseTableName: event_scores
+            referencedTableName: events
+            baseColumnNames: event_id
+            referencedColumnNames: id
+
+        # ---------- guesses ----------
+        - createTable:
+            tableName: guesses
+            columns:
+
+              - column:
+                  name: id
+                  type: UUID
+                  defaultValueComputed: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: participation_id
+                  type: UUID
+
+              - column:
+                  name: position_guessed
+                  type: VARCHAR(3)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: event_scores_id
+                  type: UUID
+
+        - addForeignKeyConstraint:
+            constraintName: fk_guesses_participation_id_participations
+            baseTableName: guesses
+            referencedTableName: participations
+            baseColumnNames: participation_id
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            constraintName: fk_guesses_event_scores_id_event_scores
+            baseTableName: guesses
+            referencedTableName: event_scores
+            baseColumnNames: event_scores_id
+            referencedColumnNames: id
+
+        # ---------- indexes ----------
+        - createIndex:
+            indexName: idx_participations_pilot_id
+            tableName: participations
+            columns:
+              - column:
+                  name: pilot_id
+
+        - createIndex:
+            indexName: idx_participations_event_id
+            tableName: participations
+            columns:
+              - column:
+                  name: event_id
+
+        - createIndex:
+            indexName: idx_event_scores_user_id
+            tableName: event_scores
+            columns:
+              - column:
+                  name: user_id
+
+        - createIndex:
+            indexName: idx_event_scores_tournament_id
+            tableName: event_scores
+            columns:
+              - column:
+                  name: tournament_id
+
+        - createIndex:
+            indexName: idx_event_scores_event_id
+            tableName: event_scores
+            columns:
+              - column:
+                  name: event_id
+
+        - createIndex:
+            indexName: idx_guesses_participation_id
+            tableName: guesses
+            columns:
+              - column:
+                  name: participation_id
+
+        - createIndex:
+            indexName: idx_guesses_event_scores_id
+            tableName: guesses
+            columns:
+              - column:
+                  name: event_scores_id
+
+      rollback:
+        - dropTable:
+            tableName: guesses
+        - dropTable:
+            tableName: event_scores
+        - dropTable:
+            tableName: participations
+        - dropTable:
+            tableName: events
+        - dropTable:
+            tableName: pilots
