@@ -4,8 +4,6 @@ import com.api.porraf1.user.domain.model.Tournament;
 import com.api.porraf1.user.infrastructure.persistence.entity.TournamentJpaEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Component

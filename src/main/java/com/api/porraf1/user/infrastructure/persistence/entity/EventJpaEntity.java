@@ -1,7 +1,6 @@
 package com.api.porraf1.user.infrastructure.persistence.entity;
 
 import com.api.porraf1.user.domain.model.EventType;
-import com.api.porraf1.user.domain.model.Participation;
 import jakarta.persistence.*;
 import lombok.*;
 

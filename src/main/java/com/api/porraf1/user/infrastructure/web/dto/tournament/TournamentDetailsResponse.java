@@ -1,8 +1,6 @@
 package com.api.porraf1.user.infrastructure.web.dto.tournament;
 
 import com.api.porraf1.user.application.port.in.query.tournament.TournamentDetailReadModel;
-import com.api.porraf1.user.infrastructure.web.dto.user.UserResponse;
-
 import java.util.List;
 import java.util.UUID;
 

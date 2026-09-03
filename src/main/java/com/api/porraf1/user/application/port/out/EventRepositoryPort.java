@@ -1,8 +1,6 @@
 package com.api.porraf1.user.application.port.out;
 
 import com.api.porraf1.user.domain.model.Event;
-import com.api.porraf1.user.domain.model.Guess;
-import com.api.porraf1.user.domain.model.Participation;
 
 import java.util.List;
 import java.util.Optional;
