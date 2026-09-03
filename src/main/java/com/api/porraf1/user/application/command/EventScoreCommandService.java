@@ -1,7 +1,6 @@
 package com.api.porraf1.user.application.command;
 
 import com.api.porraf1.user.application.port.in.command.eventscore.UpdateIfNeededTournamentScoresCommand;
-import com.api.porraf1.user.application.port.out.EventRepositoryPort;
 import com.api.porraf1.user.application.port.out.EventScoreRepositoryPort;
 import com.api.porraf1.user.application.port.out.ParticipationRepositoryPort;
 import com.api.porraf1.user.application.port.out.TournamentRepositoryPort;

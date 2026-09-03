@@ -6,8 +6,6 @@ import com.api.porraf1.user.application.port.out.EventRepositoryPort;
 import com.api.porraf1.user.application.port.out.EventScoreRepositoryPort;
 import com.api.porraf1.user.application.port.out.UserRepositoryPort;
 import com.api.porraf1.user.domain.exception.ResourceNotFoundException;
-import com.api.porraf1.user.domain.exception.UserNotFoundException;
-import com.api.porraf1.user.domain.model.Event;
 import com.api.porraf1.user.domain.model.EventScore;
 import com.api.porraf1.user.domain.model.Tournament;
 import com.api.porraf1.user.application.port.in.query.tournament.GetAllTournamentsQuery;
@@ -17,8 +15,6 @@ import com.api.porraf1.user.domain.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.lang.module.ResolutionException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

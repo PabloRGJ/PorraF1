@@ -1,9 +1,5 @@
 package com.api.porraf1.user.infrastructure.persistence.entity;
 
-import com.api.porraf1.user.domain.model.Event;
-import com.api.porraf1.user.domain.model.Guess;
-import com.api.porraf1.user.domain.model.Tournament;
-import com.api.porraf1.user.domain.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 

@@ -2,12 +2,7 @@ package com.api.porraf1.user.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Getter
 @AllArgsConstructor
